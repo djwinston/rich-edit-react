@@ -2,7 +2,7 @@ import React, { useRef } from 'react'
 import 'devextreme/dist/css/dx.light.css'
 
 import HtmlEditor, { Toolbar, MediaResizing, Item, TableContextMenu } from 'devextreme-react/html-editor'
-import { richEditSelectBoxOptions, richEditSelectBoxOptions2 } from '../data/params'
+import { /* richEditSelectBoxOptions, */ richEditSelectBoxOptions2 } from '../data/params'
 import DataSource from 'devextreme/data/data_source'
 
 const sizeValues = ['8pt', '10pt', '12pt', '14pt', '18pt', '24pt', '36pt']

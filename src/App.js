@@ -1,11 +1,15 @@
 import './App.css';
-import RichEditComponent from './components/RichEditor'
-import HTMLEditor from './components/HtmlEditor';
+// import RichEditComponent from './components/RichEditor'
+// import HTMLEditor from './components/HtmlEditor';
+// import TinyMCEditor from './components/TinyMCE'
+import FroalaEdit from './components/FroalaEditor'
 
 function App() {
   return (
-    <RichEditComponent />
+    // <RichEditComponent />
     // <HTMLEditor />
+    // <TinyMCEditor/>
+    <FroalaEdit/>
   );
 }
 
