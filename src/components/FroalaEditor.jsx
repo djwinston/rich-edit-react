@@ -1,6 +1,6 @@
-import React from 'react'
-// Require Editor JS files.
-import 'froala-editor/js/froala_editor.pkgd.min.js'
+import React, { useRef, useEffect } from 'react'
+import ApplyButton from './Button'
+import CONTENT from '../data/content'
 
 // Require Editor CSS files.
 import 'froala-editor/css/froala_style.min.css'
@@ -11,13 +11,25 @@ import 'froala-editor/css/froala_editor.pkgd.min.css'
 
 import FroalaEditor from 'react-froala-wysiwyg'
 
-// Include special components if required.
-// import FroalaEditorView from 'react-froala-wysiwyg/FroalaEditorView';
-// import FroalaEditorA from 'react-froala-wysiwyg/FroalaEditorA';
-// import FroalaEditorButton from 'react-froala-wysiwyg/FroalaEditorButton';
-// import FroalaEditorImg from 'react-froala-wysiwyg/FroalaEditorImg';
-// import FroalaEditorInput from 'react-froala-wysiwyg/FroalaEditorInput';
+const FroalaEdit = () => {
+  const editorRef = useRef(null)
 
-const FroalaEdit = () => <FroalaEditor tag="textarea" />
+  const handleClick = () => {
+    console.log('handleClick')
+    const htmlContent = editorRef.current.editor.html.get()
+    console.log(htmlContent)
+  }
+
+  useEffect(() => {
+    console.log('init floara');
+  }, [])
+
+  return (
+    <>
+      <FroalaEditor tag="textarea" ref={editorRef} model={CONTENT} />
+      <ApplyButton click={handleClick} />
+    </>
+  )
+}
 
 export default FroalaEdit

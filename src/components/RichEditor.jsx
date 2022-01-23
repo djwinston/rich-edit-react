@@ -18,15 +18,21 @@ import {
 } from 'devexpress-richedit'
 
 import ArrayStore from 'devextreme/data/array_store'
+import ApplyButton from './Button'
 
 class RichEditComponent extends React.Component {
   rich = RichEdit
-  richEditor = React.createRef();
+  richEditor = React.createRef()
+
+  handleClick = () => {
+    console.log('handleClick')
+    console.log(this.rich.document.length);
+  }
 
   componentDidMount() {
     // the createOptions() method creates an object that contains RichEdit options initialized with default values
     const options = createOptions()
-   
+
     console.log('options', options)
 
     const ribonTabs = options.ribbon.tabs.filter((tab) => !tab.contextTab)
@@ -43,13 +49,17 @@ class RichEditComponent extends React.Component {
     console.log(`TCL>>> ~ sourceData`, sourceData)
 
     console.log(`TCL>>> ~ richEditSelectBoxOptions`, richEditSelectBoxOptions)
-    const newSelectBox = new RibbonSelectBoxItem('templateSelect', new ArrayStore({ data: richEditSelectBoxOptions2[0].collection, key: 'key' }), {
-      beginGroup: true,
-      width: 150,
-      displayExpr: 'name',
-      valueExpr: 'key',
-      placeholder: 'Parameter'
-    })
+    const newSelectBox = new RibbonSelectBoxItem(
+      'templateSelect',
+      new ArrayStore({ data: richEditSelectBoxOptions2[0].collection, key: 'key' }),
+      {
+        beginGroup: true,
+        width: 150,
+        displayExpr: 'name',
+        valueExpr: 'key',
+        placeholder: 'Parameter',
+      }
+    )
 
     const tabNameInsert = options.ribbon.getTab(getTabIndexByName('Insert'))
     tabNameInsert.insertItem(newButton, 10)
@@ -66,6 +76,7 @@ class RichEditComponent extends React.Component {
 
     options.fields.updateFieldsBeforePrint = true
     options.fields.updateFieldsOnPaste = true
+    options.document.protect = 'www'
 
     options.mailMerge.activeRecord = 2
     options.mailMerge.viewMergedData = true
@@ -98,7 +109,9 @@ class RichEditComponent extends React.Component {
     options.events.saved = (e) => {
       console.log('>>>>>Saved', e)
     }
-    options.events.selectionChanged = () => {}
+    options.events.selectionChanged = (s, e) => {
+      console.log('selection', s.selection.active);
+    }
     options.events.customCommandExecuted = (s, e) => {
       console.log('s', s)
       console.log('e', e)
@@ -119,7 +132,7 @@ class RichEditComponent extends React.Component {
           s.document.insertText(s.document.length, '{{ custom Template }}')
           break
         case 'templateSelect':
-          s.document.insertText(s.document.length, `{{ ${ e.parameter } }}`)
+          s.document.insertText(s.selection.active, `{{ ${e.parameter} }}`)
           break
         default:
           console.log('RichEditor custom command not found')
@@ -157,7 +170,12 @@ class RichEditComponent extends React.Component {
   }
 
   render() {
-    return <div id="richEdit" ref={this.richEditor}></div>
+    return (
+      <>
+        <div id="richEdit" ref={this.richEditor}></div>
+        <ApplyButton click={this.handleClick} />
+      </>
+    )
   }
 }
 
