@@ -26,7 +26,7 @@ class RichEditComponent extends React.Component {
 
   handleClick = () => {
     console.log('handleClick')
-    console.log(this.rich.document.length);
+    console.log(this.rich.document.getText());
   }
 
   componentDidMount() {
@@ -104,7 +104,7 @@ class RichEditComponent extends React.Component {
     options.events.pointerDown = () => {}
     options.events.pointerUp = () => {}
     options.events.saving = (e) => {
-      console.log('======>', e)
+      console.log('saving ======>', e)
     }
     options.events.saved = (e) => {
       console.log('>>>>>Saved', e)
@@ -148,7 +148,7 @@ class RichEditComponent extends React.Component {
       right: 15,
       bottom: 15,
     }
-    options.exportUrl = 'https://siteurl.com/api/'
+    options.exportUrl = 'http://localhost:3030/richserver'
 
     options.readOnly = false
     options.width = '1400px'
