@@ -1,4 +1,5 @@
 import RichEditComponent from './components/RichEditor'
+import RichEditComponent2 from './components/RichEditor2'
 import HTMLEditor from './components/HtmlEditor'
 import TinyMCEditor from './components/TinyMCE'
 import FroalaEdit from './components/FroalaEditor'
@@ -6,6 +7,8 @@ import { Routes, Route, Link, Outlet } from 'react-router-dom'
 // import Home from './pages/Home'
 import { ReactComponent as DevExpressLogo } from './img/devexpress.svg'
 import { ReactComponent as TinyLogo } from './img/tiny.svg'
+
+import options from './data/options'
 
 const imgStyle = {
   verticalAlign: 'middle',
@@ -20,6 +23,12 @@ function Layout() {
           <li>
             <Link to="/rich">
               <span>Rich Editor</span>
+              <DevExpressLogo width={20} height={20} style={imgStyle} />
+            </Link>
+          </li>
+          <li>
+            <Link to="/rich2">
+              <span>Rich Editor Clean function</span>
               <DevExpressLogo width={20} height={20} style={imgStyle} />
             </Link>
           </li>
@@ -60,6 +69,7 @@ function App() {
     <Routes>
       <Route path="/" element={<Layout />}>
         <Route path="rich" index element={<RichEditComponent />} />
+        <Route path="rich2" index element={<RichEditComponent2 options={options} />} />
         <Route path="html" element={<HTMLEditor />} />
         <Route path="tiny" element={<TinyMCEditor />} />
         <Route path="froala" element={<FroalaEdit />} />
