@@ -26,7 +26,10 @@ class RichEditComponent extends React.Component {
 
   handleClick = () => {
     console.log('handleClick')
-    console.log(this.rich.document.getText());
+    // console.log(this.rich.document.length);
+    // this.rich.fullScreen = true
+    this.rich.hasUnsavedChanges = true
+    this.rich.saveDocument()
   }
 
   componentDidMount() {
@@ -110,7 +113,7 @@ class RichEditComponent extends React.Component {
       console.log('>>>>>Saved', e)
     }
     options.events.selectionChanged = (s, e) => {
-      console.log('selection', s.selection.active);
+      // console.log('selection', s.selection.active)
     }
     options.events.customCommandExecuted = (s, e) => {
       console.log('s', s)
@@ -167,6 +170,13 @@ class RichEditComponent extends React.Component {
       'cZm9vdGVyeTcyMFxwZ3dzeG4xMjI0MFxwZ2hzeG4xNTg0MFxjb2xzMVxjb2xzeDcyMFxwYXJkXHBsYWluXHFse1x' +
       'mczIyXGNmMFxjczEgRG9jdW1lbnQgdGV4dH1cZnMyMlxjZjBccGFyfQ=='
     this.rich.openDocument(documentAsBase64, 'DocumentName', DocumentFormat.Rtf)
+
+    this.rich.events.saving.addHandler(function (s, e) {
+      console.log('handleSave =>', e)
+      e.handled = false
+    })
+
+    this.rich.saveDocument(DocumentFormat.Rtf)
   }
 
   render() {
