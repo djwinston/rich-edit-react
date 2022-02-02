@@ -6,11 +6,12 @@ import 'devexpress-richedit/dist/dx.richedit.css'
 import {
   create,
   RichEdit,
-  DocumentFormat,
+  DocumentFormat
 } from 'devexpress-richedit'
 
 import ApplyButton from './Button'
 import documentAsBase64 from '../data/doc'
+import { newDataSource } from '../data/params'
 
 const RichEditComponent = ({options}) => {
   const richEditorRef = React.useRef(() => new RichEdit())
@@ -24,6 +25,8 @@ const RichEditComponent = ({options}) => {
     if(richEditorRef.current.document) return
     richEditorRef.current = create(document.getElementById('richEdit'), options)
     richEditorRef.current.openDocument(documentAsBase64, 'DocumentName', DocumentFormat.Rtf)
+    richEditorRef.current.mailMergeOptions.setDataSource(newDataSource)
+    console.log(`TCL>>> ~ newDataSource`, newDataSource)
     richEditorRef.current.events.saving.addHandler(function (s, e) {
       console.log('handleSave =>', e)
       e.handled = false

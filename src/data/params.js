@@ -1,3 +1,6 @@
+import DataSource from 'devextreme/data/data_source'
+import ArrayStore from 'devextreme/data/array_store'
+
 export const organizationParams = [
   { key: 'rudium', name: 'Rudium', value: '' },
   { key: 'fambli', name: 'Fambli', value: 'famb' },
@@ -46,3 +49,67 @@ export const richEditSelectBoxOptions2 = [
   getRichEditOptions('Organization Parameters', organizationParams),
   getRichEditOptions('BridgingX Parameters', bridgingXParams),
 ] //?
+
+const apiParams = [
+  {
+    id: '2f20e315-31e7-49d0-9723-092c87163701',
+    key: 'param_1',
+    tenantId: 'e5248129-c936-428c-8e44-00f854c50f98',
+    name: 'param 1',
+    value: 'jkjkjkkjlll',
+    createdByUserId: '00000000-0000-0000-0000-000000000000',
+    createdDate: '2022-01-27T22:15:47.275542Z',
+    isBridgingXParameter: false,
+  },
+  {
+    id: '52cb1c0f-e019-432a-9620-f84b1795345a',
+    key: 'parma_2',
+    tenantId: 'e5248129-c936-428c-8e44-00f854c50f98',
+    name: 'parma 2',
+    value: '',
+    createdByUserId: '00000000-0000-0000-0000-000000000000',
+    createdDate: '2022-01-29T23:26:46.555653Z',
+    isBridgingXParameter: false,
+  },
+  {
+    id: '7894673d-a2e0-49b1-bb6e-0c4c81125055',
+    key: 'param_3',
+    tenantId: 'e5248129-c936-428c-8e44-00f854c50f98',
+    name: 'param 3',
+    value: 'EMPTY',
+    createdByUserId: '00000000-0000-0000-0000-000000000000',
+    createdDate: '2022-01-30T23:26:46.555653Z',
+    isBridgingXParameter: true,
+  },
+]
+
+const selector = (dataItem, i, b) => {
+  console.log('>>>>>', dataItem, i, b);
+  return {Name: dataItem.name, age:22}
+  
+  // return {
+  //   // ID: dataItem.id,
+  //   Key: dataItem.key,
+  //   [dataItem.name]: dataItem.name,
+  //   // Value: dataItem.value,
+  //   // Category: dataItem.category
+  // }
+}
+
+const dtSource = new DataSource()
+// console.log(`TCL>>> ~ dtSource`, dtSource)
+
+export const newDataSource = new DataSource({
+  store: apiParams,
+  select: selector
+  // map: function(item) {
+  //   console.log('item>>>>>>>>', item);
+    
+  //   return {
+  //     [item.name]: item.key,
+  //     // items: item.collection,
+  //   }
+  // },
+})
+
+// export const arr = new ArrayStore({ options: richEditSelectBoxOptions2 })

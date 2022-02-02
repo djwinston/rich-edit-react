@@ -1,13 +1,8 @@
-import {
-  createOptions,
-  ViewType,
-  RichEditUnit,
-  RibbonButtonItem,
-  RibbonSelectBoxItem,
-} from 'devexpress-richedit'
+import { createOptions, ViewType, RichEditUnit, RibbonButtonItem, RibbonSelectBoxItem } from 'devexpress-richedit'
 
 import { richEditSelectBoxOptions, richEditSelectBoxOptions2 } from '../data/params'
 import ArrayStore from 'devextreme/data/array_store'
+import { newDataSource, arr } from './params'
 
 const options = createOptions()
 console.log('options', options)
@@ -21,23 +16,23 @@ const newButton = new RibbonButtonItem('template_params', 'Template', {
 })
 
 const sourceData = new ArrayStore({ data: richEditSelectBoxOptions2, key: 'id' })
-console.log(`TCL>>> ~ sourceData`, sourceData)
+// console.log(`TCL>>> ~ sourceData`, sourceData)
 
-const newSelectBox = new RibbonSelectBoxItem(
-  'templateSelect',
-  new ArrayStore({ data: richEditSelectBoxOptions2[0].collection, key: 'key' }),
-  {
-    beginGroup: true,
-    width: 150,
-    displayExpr: 'name',
-    valueExpr: 'key',
-    placeholder: 'Parameter',
-  }
-)
+// const newSelectBox = new RibbonSelectBoxItem(
+//   'templateSelect',
+//   new ArrayStore({ data: richEditSelectBoxOptions2[0].collection, key: 'key' }),
+//   {
+//     beginGroup: true,
+//     width: 150,
+//     displayExpr: 'name',
+//     valueExpr: 'key',
+//     placeholder: 'Parameter',
+//   }
+// )
 
 const tabNameInsert = options.ribbon.getTab(getTabIndexByName('Insert'))
 tabNameInsert.insertItem(newButton, 10)
-tabNameInsert.insertItem(newSelectBox, 4)
+// tabNameInsert.insertItem(newSelectBox, 4)
 
 options.bookmarks.visibility = true
 options.bookmarks.color = '#ff0000'
@@ -52,10 +47,18 @@ options.document.protect = 'www'
 
 options.mailMerge.activeRecord = 2
 options.mailMerge.viewMergedData = true
-options.mailMerge.dataSource = [
-  { Name: 'Indy', age: 32 },
-  { Name: 'Andy', age: 29 },
-]
+// options.mailMerge.setDataSource = {items:['newDataSource']}
+// console.log(`TCL>>> ~ mailMerge`, options.mailMerge)
+// console.log(`TCL>>> ~ newDataSource`, newDataSource)
+/* options.mailMerge.dataSource = [
+  { ID: 1, Name: "Super Mart of the West", Address: "702 SW 8th Street", City: "Bentonville", Phone: "(800) 555-2797" },
+  { ID: 2, Name: "Electronics Depot", Address: "2455 Paces Ferry Road NW", City: "Atlanta", Phone: "(800) 595-3232" },
+  { ID: 3, Name: "K&S Music", Address: "1000 Nicllet Mall", City: "Minneapolis", Phone: "(612) 304-6073" },
+  { ID: 4, Name: "Tom's Club", Address: "999 Lake Drive", City: "Issaquah", Phone: "(800) 955-2292" }
+] *///newDataSource //= [
+//   { Name: 'Indy', age: 32 },
+//   { Name: 'Andy', age: 29 },
+// ]
 
 // events
 options.events.activeSubDocumentChanged = () => {}
