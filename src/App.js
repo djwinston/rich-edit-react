@@ -1,5 +1,6 @@
 import RichEditComponent from './components/RichEditor'
 import RichEditComponent2 from './components/RichEditor2'
+import RichEditMerge from './components/RichEditor-merge'
 import HTMLEditor from './components/HtmlEditor'
 import TinyMCEditor from './components/TinyMCE'
 import FroalaEdit from './components/FroalaEditor'
@@ -29,6 +30,12 @@ function Layout() {
           <li>
             <Link to="/rich2">
               <span>Rich Editor Clean function</span>
+              <DevExpressLogo width={20} height={20} style={imgStyle} />
+            </Link>
+          </li>
+          <li>
+            <Link to="/rich3">
+              <span>Rich Editor Merge</span>
               <DevExpressLogo width={20} height={20} style={imgStyle} />
             </Link>
           </li>
@@ -70,6 +77,7 @@ function App() {
       <Route path="/" element={<Layout />}>
         <Route path="rich" index element={<RichEditComponent />} />
         <Route path="rich2" index element={<RichEditComponent2 options={options} />} />
+        <Route path="rich3" index element={<RichEditMerge options={options}/>} />
         <Route path="html" element={<HTMLEditor />} />
         <Route path="tiny" element={<TinyMCEditor />} />
         <Route path="froala" element={<FroalaEdit />} />
