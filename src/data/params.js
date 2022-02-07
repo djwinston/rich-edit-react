@@ -84,7 +84,7 @@ const apiParams = [
 ]
 
 const selector = (dataItem, i, b) => {
-  console.log('>>>>>', dataItem, i, b);
+  console.log('>>>>>', dataItem);
   return {Name: dataItem.name, age:22}
   
   // return {
