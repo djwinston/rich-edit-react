@@ -1,5 +1,5 @@
 import DataSource from 'devextreme/data/data_source'
-import ArrayStore from 'devextreme/data/array_store'
+// import ArrayStore from 'devextreme/data/array_store'
 
 export const organizationParams = [
   { key: 'rudium', name: 'Rudium', value: '' },
@@ -50,13 +50,19 @@ export const richEditSelectBoxOptions2 = [
   getRichEditOptions('BridgingX Parameters', bridgingXParams),
 ] //?
 
+// const dataParams = [
+//   { firstName: 'Alex', birthYear: 1991 },
+//   { firstName: 'Joe', birthYear: 1990 },
+//   { firstName: 'Bob', birthYear: 1995 },
+// ]
+
 const apiParams = [
   {
     id: '2f20e315-31e7-49d0-9723-092c87163701',
     key: 'param_1',
     tenantId: 'e5248129-c936-428c-8e44-00f854c50f98',
     name: 'param 1',
-    value: 'jkjkjkkjlll',
+    value: 'PARAM_1',
     createdByUserId: '00000000-0000-0000-0000-000000000000',
     createdDate: '2022-01-27T22:15:47.275542Z',
     isBridgingXParameter: false,
@@ -66,7 +72,7 @@ const apiParams = [
     key: 'parma_2',
     tenantId: 'e5248129-c936-428c-8e44-00f854c50f98',
     name: 'parma 2',
-    value: '',
+    value: 'PARAM2',
     createdByUserId: '00000000-0000-0000-0000-000000000000',
     createdDate: '2022-01-29T23:26:46.555653Z',
     isBridgingXParameter: false,
@@ -76,40 +82,49 @@ const apiParams = [
     key: 'param_3',
     tenantId: 'e5248129-c936-428c-8e44-00f854c50f98',
     name: 'param 3',
-    value: 'EMPTY',
+    value: 'PARAM3',
     createdByUserId: '00000000-0000-0000-0000-000000000000',
     createdDate: '2022-01-30T23:26:46.555653Z',
     isBridgingXParameter: true,
   },
 ]
 
-const selector = (dataItem, i, b) => {
-  console.log('>>>>>', dataItem);
-  return {Name: dataItem.name, age:22}
-  
-  // return {
-  //   // ID: dataItem.id,
-  //   Key: dataItem.key,
-  //   [dataItem.name]: dataItem.name,
-  //   // Value: dataItem.value,
-  //   // Category: dataItem.category
-  // }
+const getParamsCollection = (apiParams) => {
+  console.log('>>>>>', apiParams)
+  const dataObject = apiParams.reduce((acc, param) => {
+    return { ...acc, [param.key]: param.value }
+  }, {})
+
+  return [dataObject]
 }
 
-const dtSource = new DataSource()
-// console.log(`TCL>>> ~ dtSource`, dtSource)
+// const selector = (dataItem) => {
+//   console.log('>>>>>', dataItem)  
+//   return {Name: dataItem.name, age:22}  
+// }
 
 export const newDataSource = new DataSource({
-  store: apiParams,
-  select: selector
-  // map: function(item) {
-  //   console.log('item>>>>>>>>', item);
-    
+  store: {
+    type: 'array',
+    data: getParamsCollection(apiParams),
+  },
+  // store: apiParams,
+  // select: selector,
+  // filter: ['birthYear', '>', 1990],
+  // map: function (dataItem) {
+  //   console.log('>>>>>', dataItem)
   //   return {
-  //     [item.name]: item.key,
-  //     // items: item.collection,
+  //     description: dataItem.firstName + ' was born in ' + dataItem.birthYear,
+  //     firstName: dataItem.firstName,
   //   }
   // },
 })
+console.log(`TCL>>> ~ newDataSource`, newDataSource)
 
-// export const arr = new ArrayStore({ options: richEditSelectBoxOptions2 })
+export const getDataSource = (apiParams) => {
+  const dataObject = apiParams.reduce((acc, param) => {
+    return { ...acc, [param.key]: param.value }
+  }, {})
+
+  return [dataObject]
+}

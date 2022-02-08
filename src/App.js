@@ -75,9 +75,9 @@ function App() {
   return (
     <Routes>
       <Route path="/" element={<Layout />}>
-        <Route path="rich" index element={<RichEditComponent />} />
+        <Route path="rich" index element={<RichEditComponent options={options} />} />
         <Route path="rich2" index element={<RichEditComponent2 options={options} />} />
-        <Route path="rich3" index element={<RichEditMerge options={options}/>} />
+        <Route path="rich3" index element={<RichEditMerge options={options} />} />
         <Route path="html" element={<HTMLEditor />} />
         <Route path="tiny" element={<TinyMCEditor />} />
         <Route path="froala" element={<FroalaEdit />} />

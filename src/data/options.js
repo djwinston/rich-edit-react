@@ -1,21 +1,18 @@
-import { createOptions, ViewType, RichEditUnit, RibbonButtonItem, RibbonSelectBoxItem } from 'devexpress-richedit'
+import { createOptions, ViewType, RichEditUnit/* , RibbonButtonItem, RibbonSelectBoxItem */ } from 'devexpress-richedit'
 
-import { richEditSelectBoxOptions, richEditSelectBoxOptions2 } from '../data/params'
-import ArrayStore from 'devextreme/data/array_store'
-import { newDataSource, arr } from './params'
+// import { newDataSource, arr } from './params'
 
 const options = createOptions()
 console.log('options', options)
 
-const ribonTabs = options.ribbon.tabs.filter((tab) => !tab.contextTab)
-const getTabIndexByName = (tabName) => ribonTabs.findIndex((tab) => tab.title === tabName)
+// const ribonTabs = options.ribbon.tabs.filter((tab) => !tab.contextTab)
+// const getTabIndexByName = (tabName) => ribonTabs.findIndex((tab) => tab.title === tabName)
 
-const newButton = new RibbonButtonItem('template_params', 'Template', {
-  showText: true,
-  icon: 'dxre-icon-AlignFloatingObjectBottomLeft',
-})
+// const newButton = new RibbonButtonItem('template_params', 'Template', {
+//   showText: true,
+//   icon: 'dxre-icon-AlignFloatingObjectBottomLeft',
+// })
 
-const sourceData = new ArrayStore({ data: richEditSelectBoxOptions2, key: 'id' })
 // console.log(`TCL>>> ~ sourceData`, sourceData)
 
 // const newSelectBox = new RibbonSelectBoxItem(
@@ -30,8 +27,8 @@ const sourceData = new ArrayStore({ data: richEditSelectBoxOptions2, key: 'id' }
 //   }
 // )
 
-const tabNameInsert = options.ribbon.getTab(getTabIndexByName('Insert'))
-tabNameInsert.insertItem(newButton, 10)
+// const tabNameInsert = options.ribbon.getTab(getTabIndexByName('Insert'))
+// tabNameInsert.insertItem(newButton, 10)
 // tabNameInsert.insertItem(newSelectBox, 4)
 
 options.bookmarks.visibility = true
@@ -46,16 +43,9 @@ options.fields.updateFieldsOnPaste = true
 options.document.protect = 'www'
 
 options.mailMerge.activeRecord = 2
-options.mailMerge.viewMergedData = true
-// options.mailMerge.setDataSource = {items:['newDataSource']}
-// console.log(`TCL>>> ~ mailMerge`, options.mailMerge)
-// console.log(`TCL>>> ~ newDataSource`, newDataSource)
-/* options.mailMerge.dataSource = [
-  { ID: 1, Name: "Super Mart of the West", Address: "702 SW 8th Street", City: "Bentonville", Phone: "(800) 555-2797" },
-  { ID: 2, Name: "Electronics Depot", Address: "2455 Paces Ferry Road NW", City: "Atlanta", Phone: "(800) 595-3232" },
-  { ID: 3, Name: "K&S Music", Address: "1000 Nicllet Mall", City: "Minneapolis", Phone: "(612) 304-6073" },
-  { ID: 4, Name: "Tom's Club", Address: "999 Lake Drive", City: "Issaquah", Phone: "(800) 955-2292" }
-] *///newDataSource //= [
+options.mailMerge.viewMergedData = false
+// options.mailMerge.setDataSource = []
+//[
 //   { Name: 'Indy', age: 32 },
 //   { Name: 'Andy', age: 29 },
 // ]
@@ -84,12 +74,10 @@ options.events.saving = (e, s) => {
 options.events.saved = (e) => {
   console.log('>>>>>Saved', e)
 }
-options.events.selectionChanged = (s, e) => {
-  // console.log('selection', s.selection.active)
-}
+options.events.selectionChanged = () => {}
 options.events.customCommandExecuted = (s, e) => {
-  console.log('s', s)
-  console.log('e', e)
+  // console.log('s', s)
+  // console.log('e', e)
   switch (e.commandName) {
     case 'insertEmailSignature':
       s.document.insertParagraph(s.document.length)
