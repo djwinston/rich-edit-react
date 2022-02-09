@@ -59,7 +59,7 @@ export const richEditSelectBoxOptions2 = [
 const apiParams = [
   {
     id: '2f20e315-31e7-49d0-9723-092c87163701',
-    key: 'param_1',
+    key: 'param1',
     tenantId: 'e5248129-c936-428c-8e44-00f854c50f98',
     name: 'param 1',
     value: 'PARAM 1',
@@ -70,7 +70,7 @@ const apiParams = [
   },
   {
     id: '52cb1c0f-e019-432a-9620-f84b1795345a',
-    key: 'param_2',
+    key: 'param2',
     tenantId: 'e5248129-c936-428c-8e44-00f854c50f98',
     name: 'param 2',
     value: 'PARAM 2',
@@ -79,17 +79,17 @@ const apiParams = [
     createdDate: '2022-01-29T23:26:46.555653Z',
     isBridgingXParameter: false,
   },
-  {
-    id: '7894673d-a2e0-49b1-bb6e-0c4c81125055',
-    key: 'param_3',
-    tenantId: 'e5248129-c936-428c-8e44-00f854c50f98',
-    name: 'param 3',
-    value: 'PARAM 3',
-    // value: '',
-    createdByUserId: '00000000-0000-0000-0000-000000000000',
-    createdDate: '2022-01-30T23:26:46.555653Z',
-    isBridgingXParameter: true,
-  },
+  // {
+  //   id: '7894673d-a2e0-49b1-bb6e-0c4c81125055',
+  //   key: 'param_3',
+  //   tenantId: 'e5248129-c936-428c-8e44-00f854c50f98',
+  //   name: 'param 3',
+  //   value: 'PARAM 3',
+  //   // value: '',
+  //   createdByUserId: '00000000-0000-0000-0000-000000000000',
+  //   createdDate: '2022-01-30T23:26:46.555653Z',
+  //   isBridgingXParameter: true,
+  // },
 ]
 
 const getParamsCollection = (apiParams) => {
@@ -106,24 +106,6 @@ const getParamsCollection = (apiParams) => {
 //   return {Name: dataItem.name, age:22}  
 // }
 
-export const newDataSource = new DataSource({
-  store: {
-    type: 'array',
-    data: getParamsCollection(apiParams),
-  },
-  // store: apiParams,
-  // select: selector,
-  // filter: ['birthYear', '>', 1990],
-  // map: function (dataItem) {
-  //   console.log('>>>>>', dataItem)
-  //   return {
-  //     description: dataItem.firstName + ' was born in ' + dataItem.birthYear,
-  //     firstName: dataItem.firstName,
-  //   }
-  // },
-})
-console.log(`TCL>>> ~ newDataSource`, newDataSource)
-
 export const getDataSource = (apiParams) => {
   const dataObject = apiParams.reduce((acc, param) => {
     return { ...acc, [param.key]: param.value }
@@ -131,3 +113,11 @@ export const getDataSource = (apiParams) => {
 
   return [dataObject]
 }
+
+export const newDataSource = new DataSource({
+  store: {
+    type: 'array',
+    data: getParamsCollection(apiParams),
+  },  
+})
+console.log(`TCL>>> ~ newDataSource`, newDataSource)

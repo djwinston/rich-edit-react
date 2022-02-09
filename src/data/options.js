@@ -1,35 +1,10 @@
-import { createOptions, ViewType, RichEditUnit/* , RibbonButtonItem, RibbonSelectBoxItem */ } from 'devexpress-richedit'
-
-// import { newDataSource, arr } from './params'
+import {
+  createOptions,
+  ViewType,
+  RichEditUnit
+} from 'devexpress-richedit'
 
 const options = createOptions()
-console.log('options', options)
-
-// const ribonTabs = options.ribbon.tabs.filter((tab) => !tab.contextTab)
-// const getTabIndexByName = (tabName) => ribonTabs.findIndex((tab) => tab.title === tabName)
-
-// const newButton = new RibbonButtonItem('template_params', 'Template', {
-//   showText: true,
-//   icon: 'dxre-icon-AlignFloatingObjectBottomLeft',
-// })
-
-// console.log(`TCL>>> ~ sourceData`, sourceData)
-
-// const newSelectBox = new RibbonSelectBoxItem(
-//   'templateSelect',
-//   new ArrayStore({ data: richEditSelectBoxOptions2[0].collection, key: 'key' }),
-//   {
-//     beginGroup: true,
-//     width: 150,
-//     displayExpr: 'name',
-//     valueExpr: 'key',
-//     placeholder: 'Parameter',
-//   }
-// )
-
-// const tabNameInsert = options.ribbon.getTab(getTabIndexByName('Insert'))
-// tabNameInsert.insertItem(newButton, 10)
-// tabNameInsert.insertItem(newSelectBox, 4)
 
 options.bookmarks.visibility = true
 options.bookmarks.color = '#ff0000'
@@ -40,15 +15,10 @@ options.confirmOnLosingChanges.message =
 
 options.fields.updateFieldsBeforePrint = true
 options.fields.updateFieldsOnPaste = true
-options.document.protect = 'www'
+// options.document.protect = 'www'
 
 options.mailMerge.activeRecord = 1
 options.mailMerge.viewMergedData = false
-// options.mailMerge.setDataSource = []
-//[
-//   { Name: 'Indy', age: 32 },
-//   { Name: 'Andy', age: 29 },
-// ]
 
 // events
 options.events.activeSubDocumentChanged = () => {}
@@ -72,12 +42,11 @@ options.events.saving = (e, s) => {
   console.log('saving ======>', e, s)
 }
 options.events.saved = (e) => {
-  console.log('>>>>>Saved', e)
+  console.log('Saved', e)
 }
 options.events.selectionChanged = () => {}
 options.events.customCommandExecuted = (s, e) => {
-  // console.log('customCommandExecuted s', s)
-  // console.log('customCommandExecuted e', e)
+  
   switch (e.commandName) {
     case 'insertEmailSignature':
       s.document.insertParagraph(s.document.length)
@@ -90,15 +59,9 @@ options.events.customCommandExecuted = (s, e) => {
       s.document.insertText(s.document.length, 'john@example.com')
       s.document.insertParagraph(s.document.length)
       s.document.insertText(s.document.length, '+1 (818) 844-0000')
-      break
-    case 'template_params':
-      s.document.insertText(s.document.length, '{{ custom Template }}')
-      break
-    case 'templateSelect':
-      s.document.insertText(s.selection.active, `{{ ${e.parameter} }}`)
-      break
+      break    
     default:
-      console.log('RichEditor custom command not found')
+      console.log('customCommandExecuted')
   }
 }
 

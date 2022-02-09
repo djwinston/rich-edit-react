@@ -26,7 +26,7 @@ const RichEditComponent = ({options}) => {
     richEditorRef.current = create(document.getElementById('richEdit'), options)
     richEditorRef.current.openDocument(documentAsBase64, 'DocumentName', DocumentFormat.Rtf)
     richEditorRef.current.mailMergeOptions.setDataSource(newDataSource)
-    console.log(`TCL>>> ~ newDataSource`, newDataSource)
+    
     richEditorRef.current.events.saving.addHandler(function (s, e) {
       console.log('handleSave =>', e)
       e.handled = false
