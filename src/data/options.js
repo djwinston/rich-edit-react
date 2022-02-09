@@ -42,7 +42,7 @@ options.fields.updateFieldsBeforePrint = true
 options.fields.updateFieldsOnPaste = true
 options.document.protect = 'www'
 
-options.mailMerge.activeRecord = 2
+options.mailMerge.activeRecord = 1
 options.mailMerge.viewMergedData = false
 // options.mailMerge.setDataSource = []
 //[
@@ -76,8 +76,8 @@ options.events.saved = (e) => {
 }
 options.events.selectionChanged = () => {}
 options.events.customCommandExecuted = (s, e) => {
-  // console.log('s', s)
-  // console.log('e', e)
+  // console.log('customCommandExecuted s', s)
+  // console.log('customCommandExecuted e', e)
   switch (e.commandName) {
     case 'insertEmailSignature':
       s.document.insertParagraph(s.document.length)

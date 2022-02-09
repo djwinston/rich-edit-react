@@ -5,9 +5,9 @@ const btnStyle = {
   borderRadius: '5px',
 }
 
-const ApplyButton = ({ click }) => (
+const ApplyButton = ({ title = 'Apply', click }) => (
   <button style={btnStyle} onClick={click}>
-    Apply
+    {title}
   </button>
 )
 
