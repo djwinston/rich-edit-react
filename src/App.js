@@ -4,6 +4,7 @@ import RichEditMerge from './components/RichEditor-merge'
 import HTMLEditor from './components/HtmlEditor'
 import TinyMCEditor from './components/TinyMCE'
 import FroalaEdit from './components/FroalaEditor'
+import RichEditPopupComponent from './components/RichEditor2-popup'
 import { Routes, Route, Link, Outlet } from 'react-router-dom'
 // import Home from './pages/Home'
 import { ReactComponent as DevExpressLogo } from './img/devexpress.svg'
@@ -30,6 +31,12 @@ function Layout() {
           <li>
             <Link to="/rich2">
               <span>Rich Editor Clean function</span>
+              <DevExpressLogo width={20} height={20} style={imgStyle} />
+            </Link>
+          </li>
+          <li>
+            <Link to="/rich2-popup">
+              <span>Rich Editor preview popup</span>
               <DevExpressLogo width={20} height={20} style={imgStyle} />
             </Link>
           </li>
@@ -76,7 +83,8 @@ function App() {
     <Routes>
       <Route path="/" element={<Layout />}>
         <Route path="rich" index element={<RichEditComponent options={options} />} />
-        <Route path="rich2" index element={<RichEditComponent2 options={options} />} />
+        <Route path="rich2" index element={<RichEditComponent2 options={options}/>} />
+        <Route path="rich2-popup" index element={<RichEditPopupComponent/>} />
         <Route path="rich3" index element={<RichEditMerge options={options} />} />
         <Route path="html" element={<HTMLEditor />} />
         <Route path="tiny" element={<TinyMCEditor />} />
